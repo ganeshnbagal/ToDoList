@@ -1,0 +1,33 @@
+h2{
+    text-align: center;
+}
+p span{
+  font-size: medium;
+}
+p select{
+  font-size: medium;
+}
+table {
+   border-collapse: collapse;
+   width: 100%;
+}
+table td, table th{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: medium;
+}
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: purple;
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+table tr:hover {
+  background-color: #ddd;
+}
+
+

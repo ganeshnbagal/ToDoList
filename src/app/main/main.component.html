@@ -1,0 +1,70 @@
+<div class="Todolist">
+    <h2>ToDo List</h2>
+    <p>
+        <span>Sort:</span>
+        <select [(ngModel)]="sortType">
+            <option value="priority">Priority</option>
+            <option value="status">Status</option>
+        </select>
+
+        <select [(ngModel)]="sortValue" (change)="sortToDoList('Priority')" *ngIf="sortType.includes('priority')">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <select [(ngModel)]="sortValue" (change)="sortToDoList('Status')" *ngIf="sortType.includes('status')">
+            <option value="New">New</option>
+            <option value="In-Progress">In-Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+    </p>
+    <table>
+        <tr>
+            <th *ngFor="let rows of headers">
+                {{rows}}
+            </th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" [(ngModel)]="newTodo.Name">
+            </td>
+            <td>
+                <select [(ngModel)]="newTodo.Priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </td>
+            <td>
+                <select [(ngModel)]="newTodo.Status">
+                    <option value="New">New</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </td>
+            <td>
+                <button (click)="addTodo()">Add</button>
+            </td>
+        </tr>
+        <tr *ngFor="let i of rows; let index_num=index;">
+            <td *ngFor="let header of headers">
+                <span *ngIf="!header.includes('Status')">{{i[header]}}</span>
+                <select [(ngModel)]="i[header]" *ngIf="header.includes('Status')">
+                    <option value="New">New</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </td>
+            <td>
+                <button (click)=deleteTodo(index_num)>Delete</button>
+            </td>
+        </tr>
+        <tr *ngIf="rows.length==0">
+            <td colspan="4">
+                No items found !!!
+            </td>
+        </tr>
+    </table>
+</div>
